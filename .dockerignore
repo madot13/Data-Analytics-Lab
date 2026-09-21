@@ -1,0 +1,12 @@
+node_modules
+dist
+.astro
+.wrangler
+.git
+.github
+.env
+.env.*
+legacy
+photos of members
+scripts
+*.md
