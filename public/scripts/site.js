@@ -150,6 +150,52 @@
   window.addEventListener("hashchange", requestUpdate);
   requestUpdate();
 
+  const gallery = document.querySelector("[data-hero-gallery]");
+  if (gallery) {
+    const slides = [...gallery.querySelectorAll(".hero-slide")];
+    const dots = [...gallery.querySelectorAll(".hero-dots button")];
+    const caption = gallery.querySelector("[data-hero-caption]");
+    let current = 0;
+
+    const showSlide = (index) => {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        const active = i === current;
+        slide.classList.toggle("is-active", active);
+        if (active) {
+          slide.loading = "eager";
+          slide.removeAttribute("aria-hidden");
+        } else {
+          slide.setAttribute("aria-hidden", "true");
+        }
+      });
+      dots.forEach((dot, i) => dot.toggleAttribute("aria-current", i === current));
+      if (caption) caption.textContent = slides[current].dataset.caption ?? "";
+      // Warm up the next photo so it is ready before the click.
+      slides[(current + 1) % slides.length].loading = "eager";
+    };
+
+    gallery.querySelector(".hero-prev")?.addEventListener("click", () => showSlide(current - 1));
+    gallery.querySelector(".hero-next")?.addEventListener("click", () => showSlide(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener("click", () => showSlide(i)));
+
+    gallery.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") showSlide(current - 1);
+      if (event.key === "ArrowRight") showSlide(current + 1);
+    });
+
+    let touchX = null;
+    gallery.addEventListener("touchstart", (event) => { touchX = event.touches[0].clientX; }, { passive: true });
+    gallery.addEventListener("touchend", (event) => {
+      if (touchX === null) return;
+      const delta = event.changedTouches[0].clientX - touchX;
+      if (Math.abs(delta) > 40) showSlide(current + (delta < 0 ? 1 : -1));
+      touchX = null;
+    });
+
+    gallery.querySelectorAll("[hidden]").forEach((element) => element.removeAttribute("hidden"));
+  }
+
   document.querySelectorAll(".avatar img").forEach((image) => {
     image.addEventListener("error", () => {
       image.closest(".avatar")?.classList.remove("has-photo");
