@@ -1,0 +1,30 @@
+---
+// Glowing version of the MADRID Lab logo for dark backgrounds. The shapes are
+// traced from public/images/logo-light.png; letters are filled with fine wavy
+// lines and lit by a soft honey-coloured glow.
+---
+
+<svg class="glow-logo" viewBox="-12 -12 404 164" role="img" aria-label="MADRID Lab">
+  <defs>
+    <pattern id="glowLogoLines" width="4.6" height="16" patternUnits="userSpaceOnUse">
+      <path d="M2.3 0 q-1.3 4 0 8 t0 8" fill="none" stroke="#fff1d2" stroke-width="1.15" />
+    </pattern>
+    <filter id="glowLogoWide" x="-20%" y="-30%" width="140%" height="160%">
+      <feGaussianBlur stdDeviation="7" />
+    </filter>
+    <filter id="glowLogoTight" x="-10%" y="-20%" width="120%" height="140%">
+      <feGaussianBlur stdDeviation="1.8" />
+    </filter>
+    <g id="glowLogoShape">
+      <path d="M30 4h27v23a4 4 0 0 1-4 4H30Z" />
+      <path d="M7 32h23v21a4 4 0 0 1-4 4H3V36a4 4 0 0 1 4-4Z" />
+      <path d="M3 57h54v25a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" />
+      <text class="glow-logo-word" x="78" y="86" textLength="298" lengthAdjust="spacingAndGlyphs">MADRID</text>
+      <text class="glow-logo-sub" x="3" y="136" textLength="94" lengthAdjust="spacing">LAB</text>
+    </g>
+  </defs>
+  <use class="glow-logo-halo" href="#glowLogoShape" filter="url(#glowLogoWide)" />
+  <use class="glow-logo-core" href="#glowLogoShape" filter="url(#glowLogoTight)" />
+  <use class="glow-logo-edge" href="#glowLogoShape" />
+  <use href="#glowLogoShape" fill="url(#glowLogoLines)" />
+</svg>

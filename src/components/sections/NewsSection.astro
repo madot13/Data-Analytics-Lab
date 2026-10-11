@@ -7,8 +7,9 @@ interface Props {
 }
 
 const { news } = Astro.props;
+const visibleCount = 4;
 const groups = [
-  { category: "world", title: "AI & ML worldwide", description: "Selected developments from primary sources. Reviewed September 16, 2026." },
+  { category: "world", title: "AI & ML worldwide", description: "Selected developments from primary sources. Reviewed October 12, 2026." },
   { category: "lab", title: "Lab news", description: "Updates from our team." },
 ] as const;
 ---
@@ -20,13 +21,16 @@ const groups = [
       <h2 id="news-title">News</h2>
       <p>News from our lab and the wider AI and machine learning community.</p>
     </header>
-    {groups.map((group) => (
+    {groups.map((group) => {
+    const items = news.filter(({ data }) => data.category === group.category);
+    const hiddenCount = items.length - visibleCount;
+    return (
     <section class="news-group" aria-labelledby={`news-${group.category}`}>
     <h3 id={`news-${group.category}`} class="h2">{group.title}</h3>
     <p class="muted">{group.description}</p>
     <ul class="news-list">
-      {news.filter(({ data }) => data.category === group.category).map(({ data }) => (
-        <li class="news-item">
+      {items.map(({ data }, index) => (
+        <li class:list={["news-item", { "news-extra": index >= visibleCount }]}>
           <time datetime={data.date.toISOString().slice(0, 10)}>{formatDate(data.date)}</time>
           <div><h4>{data.title}</h4><p>{data.text}</p>
             {data.source && <a class="text-link" href={data.source.url} target="_blank" rel="noopener noreferrer">Source: {data.source.name} ↗</a>}
@@ -34,7 +38,16 @@ const groups = [
         </li>
       ))}
     </ul>
+    {hiddenCount > 0 && (
+      <details class="news-more">
+        <summary class="btn btn-ghost">
+          <span class="news-more-open">Show more ({hiddenCount})</span>
+          <span class="news-more-close">Show less</span>
+        </summary>
+      </details>
+    )}
     </section>
-    ))}
+    );
+    })}
   </div>
 </section>

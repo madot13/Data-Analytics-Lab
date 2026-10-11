@@ -1,6 +1,5 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { researchAreas } from "../../data/site";
 import { formatDate } from "../../utils/format";
 
 interface Props {
@@ -9,6 +8,13 @@ interface Props {
 
 const { news } = Astro.props;
 const latestNews = news.filter(({ data }) => data.category === "lab").slice(0, 3);
+
+const heroPhotos = [
+  { file: "team-freedom", caption: "MADRID Lab team at Freedom Holding Corp.", alt: "MADRID Lab members posing in front of the Freedom Holding Corp. sign" },
+  { file: "hero-team", caption: "MADRID Lab team", alt: "MADRID Lab members gathered with certificates at SDU University" },
+  { file: "team-certificates", caption: "Certificate day at SDU University", alt: "MADRID Lab members standing in a row outdoors holding certificates" },
+  { file: "team-nauryz", caption: "Nauryz celebration", alt: "MADRID Lab members in matching T-shirts at a Nauryz celebration" },
+];
 ---
 
 <section class="page home-page" id="home" data-scrollspy-section>
@@ -38,20 +44,38 @@ const latestNews = news.filter(({ data }) => data.category === "lab").slice(0, 3
         </ol>
       </div>
 
-      <figure class="hero-photo">
-        <img
-          src="/images/hero-team-1920.webp"
-          srcset="/images/hero-team-960.webp 960w, /images/hero-team-1920.webp 1920w"
-          sizes="(max-width: 720px) calc(100vw - 40px), (max-width: 1180px) calc(100vw - 56px), 1124px"
-          width="1920"
-          height="1080"
-          alt="MADRID Lab members gathered with certificates at SDU University"
-          decoding="async"
-          fetchpriority="high"
-        />
+      <figure class="hero-photo" data-hero-gallery aria-roledescription="carousel" aria-label="MADRID Lab photos">
+        <div class="hero-slides">
+          {heroPhotos.map((photo, index) => (
+            <img
+              class:list={["hero-slide", { "is-active": index === 0 }]}
+              src={`/images/${photo.file}-1920.webp`}
+              srcset={`/images/${photo.file}-960.webp 960w, /images/${photo.file}-1920.webp 1920w`}
+              sizes="(max-width: 720px) calc(100vw - 40px), (max-width: 1180px) calc(100vw - 56px), 1124px"
+              width="1920"
+              height="1080"
+              alt={photo.alt}
+              decoding="async"
+              loading={index === 0 ? "eager" : "lazy"}
+              fetchpriority={index === 0 ? "high" : "auto"}
+              aria-hidden={index === 0 ? undefined : "true"}
+              data-caption={photo.caption}
+            />
+          ))}
+          <button class="hero-nav hero-prev" type="button" aria-label="Previous photo" hidden>
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </button>
+          <button class="hero-nav hero-next" type="button" aria-label="Next photo" hidden>
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </button>
+        </div>
         <figcaption>
-          <span>MADRID Lab team</span>
-          <span>SDU University</span>
+          <span data-hero-caption aria-live="polite">{heroPhotos[0].caption}</span>
+          <span class="hero-dots" hidden>
+            {heroPhotos.map((photo, index) => (
+              <button type="button" aria-label={`Show photo ${index + 1}: ${photo.caption}`} aria-current={index === 0 ? "true" : undefined} />
+            ))}
+          </span>
         </figcaption>
       </figure>
     </div>
@@ -77,21 +101,37 @@ const latestNews = news.filter(({ data }) => data.category === "lab").slice(0, 3
     </div>
   </div>
 
-  <div class="content-section">
+  <div class="content-section highlight-section">
     <div class="wrap">
-      <div class="row-head">
-        <h2 class="h2">Research areas</h2>
-        <a class="text-link" href="#research">All research</a>
-      </div>
-      <div class="areas">
-        {researchAreas.map((area) => (
-          <article class="area">
-            <div class="letters" aria-hidden="true">{area.letters}</div>
-            <h3>{area.title}</h3>
-            <p>{area.short}</p>
-          </article>
-        ))}
-      </div>
+      <article class="highlight">
+        <figure class="highlight-photo">
+          <img
+            src="/images/digital-bridge-2026-1280.webp"
+            srcset="/images/digital-bridge-2026-640.webp 640w, /images/digital-bridge-2026-1280.webp 1280w"
+            sizes="(max-width: 1040px) calc(100vw - 40px), 560px"
+            width="1280"
+            height="853"
+            alt="Panel session on the main stage of AI & Digital Bridge 2026 in Astana"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+        <div class="highlight-copy">
+          <p class="highlight-kicker">Highlight · October 2026</p>
+          <h2>Through to the next stage at AI&nbsp;&amp;&nbsp;Digital Bridge</h2>
+          <p>
+            At AI &amp; Digital Bridge 2026 in Astana, lab members Aisulu, Aknur
+            and Abilmansur presented and defended their team's project. The team
+            advanced to the second qualification stage of the GovTech programme
+            organised by the Ministry of Education.
+          </p>
+          <ul class="highlight-people" aria-label="Lab members on the team">
+            <li>Aisulu Igimbayeva</li>
+            <li>Aknur Mansurkhan</li>
+            <li>Abilmansur Alibekov</li>
+          </ul>
+        </div>
+      </article>
     </div>
   </div>
 
@@ -127,3 +167,51 @@ const latestNews = news.filter(({ data }) => data.category === "lab").slice(0, 3
     </div>
   </div>
 </section>
+
+<script>
+  const gallery = document.querySelector<HTMLElement>("[data-hero-gallery]");
+  if (gallery) {
+    const slides = [...gallery.querySelectorAll<HTMLImageElement>(".hero-slide")];
+    const dots = [...gallery.querySelectorAll<HTMLButtonElement>(".hero-dots button")];
+    const caption = gallery.querySelector<HTMLElement>("[data-hero-caption]");
+    let current = 0;
+
+    const show = (index: number) => {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        const active = i === current;
+        slide.classList.toggle("is-active", active);
+        if (active) {
+          slide.loading = "eager";
+          slide.removeAttribute("aria-hidden");
+        } else {
+          slide.setAttribute("aria-hidden", "true");
+        }
+      });
+      dots.forEach((dot, i) => dot.toggleAttribute("aria-current", i === current));
+      if (caption) caption.textContent = slides[current].dataset.caption ?? "";
+      // Warm up the next photo so it is ready before the click.
+      slides[(current + 1) % slides.length].loading = "eager";
+    };
+
+    gallery.querySelector(".hero-prev")?.addEventListener("click", () => show(current - 1));
+    gallery.querySelector(".hero-next")?.addEventListener("click", () => show(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener("click", () => show(i)));
+
+    gallery.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") show(current - 1);
+      if (event.key === "ArrowRight") show(current + 1);
+    });
+
+    let touchX: number | null = null;
+    gallery.addEventListener("touchstart", (event) => { touchX = event.touches[0].clientX; }, { passive: true });
+    gallery.addEventListener("touchend", (event) => {
+      if (touchX === null) return;
+      const delta = event.changedTouches[0].clientX - touchX;
+      if (Math.abs(delta) > 40) show(current + (delta < 0 ? 1 : -1));
+      touchX = null;
+    });
+
+    gallery.querySelectorAll<HTMLElement>("[hidden]").forEach((el) => el.removeAttribute("hidden"));
+  }
+</script>

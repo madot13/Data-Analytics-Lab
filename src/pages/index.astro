@@ -6,15 +6,17 @@ import Footer from "../components/Footer.astro";
 import HomeSection from "../components/sections/HomeSection.astro";
 import MembersSection from "../components/sections/MembersSection.astro";
 import PublicationsSection from "../components/sections/PublicationsSection.astro";
+import ProjectsSection from "../components/sections/ProjectsSection.astro";
 import OpeningsSection from "../components/sections/OpeningsSection.astro";
 import ResearchSection from "../components/sections/ResearchSection.astro";
 import BlogSection from "../components/sections/BlogSection.astro";
 import NewsSection from "../components/sections/NewsSection.astro";
 import { lab } from "../data/site";
 
-const [members, publications, openings, news, posts] = await Promise.all([
+const [members, publications, projects, openings, news, posts] = await Promise.all([
   getCollection("members"),
   getCollection("publications"),
+  getCollection("projects"),
   getCollection("openings"),
   getCollection("news"),
   getCollection("posts"),
@@ -22,6 +24,7 @@ const [members, publications, openings, news, posts] = await Promise.all([
 
 members.sort((a, b) => a.data.order - b.data.order);
 publications.sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
+projects.sort((a, b) => a.data.order - b.data.order);
 openings.sort((a, b) => a.data.order - b.data.order);
 news.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
@@ -55,6 +58,7 @@ const structuredData = {
     <MembersSection members={members} />
     <ResearchSection publications={publications} />
     <PublicationsSection publications={publications} />
+    <ProjectsSection projects={projects} />
     <OpeningsSection openings={openings} />
     <BlogSection posts={posts} />
     <NewsSection news={news} />

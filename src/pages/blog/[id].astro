@@ -1,0 +1,66 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { formatDate } from "../../utils/format";
+import { lab } from "../../data/site";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts
+    .filter((post) => post.body?.trim())
+    .map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+
+interface Props {
+  post: CollectionEntry<"posts">;
+}
+
+const { post } = Astro.props;
+const { title, date, excerpt, cover } = post.data;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={`${title} | ${lab.name}`} description={excerpt}>
+  <Header />
+  <main id="main" tabindex="-1" class="article-page">
+    <article class="wrap article">
+      <a class="article-back" href="/#blog">← All posts</a>
+      <header class="article-head">
+        <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>
+        <h1>{title}</h1>
+        <p class="article-lead">{excerpt}</p>
+      </header>
+
+      {cover && (
+        <figure class="article-cover">
+          <img
+            src={cover.src}
+            srcset={cover.srcSmall ? `${cover.srcSmall} 800w, ${cover.src} ${cover.width}w` : undefined}
+            sizes="(max-width: 860px) calc(100vw - 40px), 820px"
+            width={cover.width}
+            height={cover.height}
+            alt={cover.alt}
+            decoding="async"
+          />
+          {cover.credit && (
+            <figcaption>
+              {cover.creditUrl ? <a href={cover.creditUrl} target="_blank" rel="noopener noreferrer">{cover.credit}</a> : cover.credit}
+              {cover.license && (
+                <>, {cover.licenseUrl ? <a href={cover.licenseUrl} target="_blank" rel="noopener noreferrer">{cover.license}</a> : cover.license}</>
+              )}
+            </figcaption>
+          )}
+        </figure>
+      )}
+
+      <div class="article-body">
+        <Content />
+      </div>
+
+      <a class="btn btn-ghost article-more" href="/#blog">Back to the blog</a>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

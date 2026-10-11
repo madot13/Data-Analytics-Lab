@@ -1,0 +1,63 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { socialLinks } from "../../data/site";
+
+interface Props {
+  projects: CollectionEntry<"projects">[];
+}
+
+const { projects } = Astro.props;
+const github = socialLinks.find((link) => link.icon === "github");
+const statusLabels = { ongoing: "Ongoing", completed: "Completed" } as const;
+---
+
+<section class="page" id="projects" data-scrollspy-section aria-labelledby="projects-title">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="section-kicker">What we build</p>
+      <h2 id="projects-title">Projects</h2>
+      <p>Dashboards, models and data tools built by lab members.</p>
+      {github && projects.length > 0 && (
+        <a class="text-link projects-github" href={github.url} target="_blank" rel="noopener noreferrer">All code on GitHub ↗</a>
+      )}
+    </header>
+
+    {projects.length > 0 ? (
+      <div class="projects">
+        {projects.map(({ data }) => (
+          <article class="project">
+            {(data.status || data.year) && (
+              <div class="project-meta">
+                {data.status && <span class:list={["project-status", `is-${data.status}`]}>{statusLabels[data.status]}</span>}
+                {data.year && <span class="project-year">{data.year}</span>}
+              </div>
+            )}
+            <h3>{data.title}</h3>
+            <p>{data.summary}</p>
+            {data.tags.length > 0 && (
+              <ul class="project-tags" aria-label="Key features">
+                {data.tags.map((tag) => <li>{tag}</li>)}
+              </ul>
+            )}
+            {data.team.length > 0 && <p class="project-team">Team: {data.team.join(", ")}</p>}
+            {(data.repo || data.demo || data.paper) && (
+              <div class="project-links">
+                {data.repo && <a class="text-link" href={data.repo} target="_blank" rel="noopener noreferrer">Code ↗</a>}
+                {data.demo && <a class="text-link" href={data.demo} target="_blank" rel="noopener noreferrer">Demo ↗</a>}
+                {data.paper && <a class="text-link" href={data.paper} target="_blank" rel="noopener noreferrer">Paper ↗</a>}
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+    ) : (
+      <div class="projects-empty">
+        <div>
+          <h3>Projects are on their way</h3>
+          <p>We are preparing descriptions of our current work. In the meantime, follow the lab on GitHub.</p>
+        </div>
+        {github && <a class="btn btn-ghost" href={github.url} target="_blank" rel="noopener noreferrer">Visit our GitHub</a>}
+      </div>
+    )}
+  </div>
+</section>

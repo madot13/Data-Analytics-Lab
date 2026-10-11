@@ -65,6 +65,52 @@
 
 `src/data/news.json`: `category: "world"` для AI/ML, `"lab"` для лаборатории. У мировых новостей заполните `source: { "name": "Название источника", "url": "https://..." }`. Дата — дата публикации, не дата добавления. Раздел показывает новости по убыванию даты. Добавленная подборка проверена 16 сентября 2026; автоматического обновления нет. При следующем обновлении поменяйте дату проверки в `NewsSection.astro`.
 
+## Проекты
+
+`src/data/projects.json`. Пока список пуст, в разделе показывается заглушка со ссылкой на GitHub. Пример записи:
+
+```json
+{
+  "id": "student-wellbeing-dashboard",
+  "title": "Student wellbeing dashboard",
+  "summary": "Одно-два предложения о том, что делает проект и зачем.",
+  "status": "ongoing",
+  "year": 2026,
+  "tags": ["Sentiment analysis", "Streamlit"],
+  "team": ["Имя Фамилия", "Имя Фамилия"],
+  "repo": "https://github.com/SDU-Data-Analytics-Lab/...",
+  "demo": null,
+  "paper": null,
+  "order": 1
+}
+```
+
+`status`: `"ongoing"` или `"completed"`. `tags` — 3–4 коротких ключевых слова. Необязательны все поля, кроме `title`, `summary` и `order`. После переноса репозитория на GitHub лаборатории обновите `repo`. Порядок карточек задаёт `order`.
+
+## Блог
+
+Каждая статья — отдельный Markdown-файл в `src/content/blog/`. Имя файла становится адресом страницы: `aict2026-baku.md` → `/blog/aict2026-baku/`. В начале файла:
+
+```yaml
+---
+title: "Заголовок"
+date: 2026-10-12
+excerpt: "1–2 предложения для карточки в разделе Blog"
+cover:            # необязательно
+  src: /images/blog/photo-1600.webp
+  srcSmall: /images/blog/photo-800.webp
+  width: 1600
+  height: 1067
+  alt: "Что на фото"
+  credit: "Автор фото"              # для чужих фото обязательно
+  creditUrl: "https://..."
+  license: "CC BY 3.0"
+  licenseUrl: "https://..."
+---
+```
+
+Ниже обычный текст: абзацы, `## подзаголовки`, списки, ссылки. Если текста под шапкой нет, в разделе показывается только карточка без ссылки «Read post». Фото из интернета берите только со свободной лицензией (например, Wikimedia Commons) и указывайте автора в `credit`.
+
 ## Сборка и публикация
 
 ```sh

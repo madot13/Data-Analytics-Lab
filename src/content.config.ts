@@ -1,5 +1,5 @@
 import { defineCollection } from "astro:content";
-import { file } from "astro/loaders";
+import { file, glob } from "astro/loaders";
 import { z } from "astro/zod";
 import { researchTopicIds } from "./data/research-topics";
 
@@ -42,6 +42,22 @@ const publications = defineCollection({
   }),
 });
 
+const projects = defineCollection({
+  loader: file("src/data/projects.json"),
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    status: z.enum(["ongoing", "completed"]).optional(),
+    year: z.number().int().optional(),
+    tags: z.array(z.string()).default([]),
+    team: z.array(z.string()).default([]),
+    repo: httpsUrl.nullable().optional(),
+    demo: httpsUrl.nullable().optional(),
+    paper: httpsUrl.nullable().optional(),
+    order: z.number().int().nonnegative(),
+  }),
+});
+
 const openings = defineCollection({
   loader: file("src/data/openings.json"),
   schema: z.object({
@@ -65,13 +81,23 @@ const news = defineCollection({
 });
 
 const posts = defineCollection({
-  loader: file("src/data/posts.json"),
+  loader: glob({ pattern: "*.md", base: "src/content/blog" }),
   schema: z.object({
     date: z.coerce.date(),
     title: z.string(),
-    text: z.string(),
-    url: httpsUrl.nullable().optional(),
+    excerpt: z.string(),
+    cover: z.object({
+      src: localAssetPath,
+      srcSmall: localAssetPath.optional(),
+      width: z.number().int().positive(),
+      height: z.number().int().positive(),
+      alt: z.string(),
+      credit: z.string().optional(),
+      creditUrl: httpsUrl.optional(),
+      license: z.string().optional(),
+      licenseUrl: httpsUrl.optional(),
+    }).optional(),
   }),
 });
 
-export const collections = { members, publications, openings, news, posts };
+export const collections = { members, publications, projects, openings, news, posts };

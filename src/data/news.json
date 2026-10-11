@@ -1,5 +1,78 @@
 [
   {
+    "id": "anthropic-cyber-mission",
+    "date": "2026-10-08",
+    "title": "Anthropic launches the Cyber Mission",
+    "text": "A long-term programme to help defenders secure critical infrastructure and open-source software. It starts with a Critical Infrastructure Defense Program for operational-technology security providers and OSS Scanner, which offers free periodic vulnerability scans of enrolled open-source projects.",
+    "category": "world",
+    "source": {
+      "name": "Anthropic",
+      "url": "https://www.anthropic.com/news/anthropic-cyber-mission"
+    }
+  },
+  {
+    "id": "claude-haiku-5-5",
+    "date": "2026-10-07",
+    "title": "Anthropic releases Claude Haiku 5.5",
+    "text": "Anthropic's new small model targets high-volume work such as summarisation, sub-agent tasks and browser use. According to Anthropic it costs about 75% less to run than Haiku 4.5, and it is the first Haiku model with effort controls.",
+    "category": "world",
+    "source": {
+      "name": "Anthropic",
+      "url": "https://www.anthropic.com/claude-haiku-5-5"
+    }
+  },
+  {
+    "id": "gpt-6-for-everyone",
+    "date": "2026-10-07",
+    "title": "OpenAI rolls out GPT-6 with Intelligent UI in ChatGPT",
+    "text": "GPT-6 is rolling out globally in ChatGPT. With Intelligent UI, answers can combine text with charts, forms, buttons and interactive tools, so the interface adapts to each question.",
+    "category": "world",
+    "source": {
+      "name": "OpenAI",
+      "url": "https://openai.com/index/gpt-6-for-everyone/"
+    }
+  },
+  {
+    "id": "mistral-large-4",
+    "date": "2026-10-06",
+    "title": "Mistral opens a preview of Mistral Large 4",
+    "text": "A natively multimodal mixture-of-experts model with about 1 trillion parameters, 52 billion of them active, trained from scratch in Mistral's European data centres. The API preview is available now, and Mistral plans to release open weights by the end of the month.",
+    "category": "world",
+    "source": {
+      "name": "Mistral AI",
+      "url": "https://mistral.ai/news/mistral-large-4/"
+    }
+  },
+  {
+    "id": "embeddinggemma-2",
+    "date": "2026-10-06",
+    "title": "Google releases EmbeddingGemma 2",
+    "text": "An open 740M-parameter embedding model that places text, images, audio and video in one shared vector space and is small enough to run on-device. It is released under Apache 2.0, which makes it a practical choice for multimodal search and retrieval research.",
+    "category": "world",
+    "source": {
+      "name": "Google",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/"
+    }
+  },
+  {
+    "id": "digital-bridge-2026-govtech",
+    "date": "2026-10-03",
+    "title": "Lab team advances at AI & Digital Bridge 2026",
+    "text": "Aisulu Igimbayeva, Aknur Mansurkhan and Abilmansur Alibekov defended their team's project in Astana and moved on to the second qualification stage of the GovTech programme.",
+    "category": "lab"
+  },
+  {
+    "id": "claude-novel-enzyme",
+    "date": "2026-09-23",
+    "title": "Claude identifies a previously uncharacterised enzyme system",
+    "text": "Anthropic's life sciences team reports that Claude autonomously found an enzyme system in bacteriophages that pairs a reverse transcriptase with CRISPR-like repeats. Its function is still under investigation, but the result is an example of AI contributing to scientific discovery.",
+    "category": "world",
+    "source": {
+      "name": "Anthropic",
+      "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system"
+    }
+  },
+  {
     "id": "three-new-members-2026",
     "date": "2026-09-11",
     "title": "Three new members join the lab",

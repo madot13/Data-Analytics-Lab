@@ -4,7 +4,7 @@ import { navigation } from "../data/site";
 
 <header class="site-header" id="siteHeader">
   <div class="wrap">
-    <a class="brand" href="#home" aria-label="MADRID Lab, home">
+    <a class="brand" href="/#home" aria-label="MADRID Lab, home">
       <img src="/images/logo-navy.png" width="378" height="139" alt="MADRID Lab" />
     </a>
     <button
@@ -22,7 +22,7 @@ import { navigation } from "../data/site";
     <nav class="nav" id="mainNav" aria-label="Main navigation">
       {navigation.map((item, index) => (
         <a
-          href={`#${item.id}`}
+          href={`/#${item.id}`}
           data-section={item.id}
           class:list={{ "is-active": index === 0 }}
           aria-current={index === 0 ? "location" : undefined}

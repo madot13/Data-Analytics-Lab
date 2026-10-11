@@ -60,7 +60,7 @@ publishing team photos or account security in Cloudflare.
 - Publications: `src/data/publications.json`
 - Openings: `src/data/openings.json`
 - News: `src/data/news.json`
-- Blog cards: `src/data/posts.json`
+- Blog posts: Markdown files in `src/content/blog/` (each post with text gets its own page at `/blog/<file-name>/`)
 
 Each JSON entry has a unique `id`. Astro validates all entries against the
 schemas in `src/content.config.ts` during the build.

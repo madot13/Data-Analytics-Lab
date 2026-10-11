@@ -1,0 +1,58 @@
+[
+  {
+    "id": "freedom-review-analytics",
+    "title": "Freedom Customer Review Analytics",
+    "summary": "A dashboard that analyses 2GIS reviews of companies in the Freedom ecosystem to understand customer experience and spot service issues across branches.",
+    "tags": ["Sentiment analysis", "Topic analysis", "Branch comparison", "AI insights"],
+    "repo": "https://github.com/akbooo/2gis_freedom",
+    "order": 1
+  },
+  {
+    "id": "it-jobs-market",
+    "title": "Kazakhstan IT Job Market Analytics",
+    "summary": "Vacancies from HeadHunter, Kaspi, Kolesa and Telegram combined in one dashboard to explore salaries and skill demand in Kazakhstan's IT job market.",
+    "tags": ["Data collection", "Salary analysis", "Job requirements", "LLM enrichment"],
+    "repo": "https://github.com/nurdauletsnn-pixel/it-jobs-market",
+    "order": 2
+  },
+  {
+    "id": "kindergarten-accessibility-almaty",
+    "title": "Kindergarten Accessibility in Almaty",
+    "summary": "An interactive map that compares kindergarten locations with population distribution, finds underserved areas and suggests where new kindergartens are needed.",
+    "tags": ["Geospatial analysis", "Population coverage", "District comparison", "Site recommendations"],
+    "repo": "https://github.com/akbooo/kindergarten_availability_almaty",
+    "order": 3
+  },
+  {
+    "id": "astana-real-estate",
+    "title": "Astana Real Estate Analytics",
+    "summary": "A machine learning app that estimates apartment prices and compares Krisha.kz listings with model predictions to flag overpriced and underpriced offers.",
+    "tags": ["CatBoost", "Price prediction", "Price per m²", "District comparison"],
+    "repo": "https://github.com/sunshine-frankl/Krisha.kz-analytics",
+    "order": 4
+  },
+  {
+    "id": "employer-attractiveness",
+    "title": "Employer Attractiveness Analytics",
+    "summary": "A survey dashboard showing how respondents rate employers and which factors drive their choice of company.",
+    "tags": ["Company rankings", "Group comparison", "Selection factors", "Survey data"],
+    "repo": "https://github.com/latethwe/pplkz_streamlit",
+    "order": 5
+  },
+  {
+    "id": "sdu-publication-analytics",
+    "title": "SDU Research Publication Analytics",
+    "summary": "A platform for exploring SDU's publication activity and research collaboration using Scopus and Web of Science data.",
+    "tags": ["Publication trends", "Journal quartiles", "Co-authorship networks", "Faculty comparison"],
+    "repo": "https://github.com/akbooo/scopus_sdu",
+    "order": 6
+  },
+  {
+    "id": "sdu-review-analytics",
+    "title": "SDU University Review Analytics",
+    "summary": "A dashboard that analyses SDU University reviews on 2GIS across 23 thematic categories to track student experience over time.",
+    "tags": ["23 categories", "Sentiment trends", "Monthly reviews", "AI insights"],
+    "repo": "https://github.com/akbooo/sdu_review_analytics",
+    "order": 7
+  }
+]
