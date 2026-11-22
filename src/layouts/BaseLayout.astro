@@ -1,6 +1,15 @@
 ---
 import "../styles/global.css";
 import { lab } from "../data/site";
+import siteJsSource from "../../public/scripts/site.js?raw";
+
+// site.js lives in public/ and is not fingerprinted by Astro, so browsers can keep
+// serving an old copy after a deploy. A content hash in the URL forces a fresh fetch.
+let hash = 0x811c9dc5;
+for (let i = 0; i < siteJsSource.length; i++) {
+  hash = Math.imul(hash ^ siteJsSource.charCodeAt(i), 0x01000193);
+}
+const siteJsVersion = (hash >>> 0).toString(16);
 
 interface Props {
   title?: string;
@@ -50,6 +59,6 @@ const canonicalUrl = Astro.site
   <body id="top">
     <a class="skip" href="#main">Skip to content</a>
     <slot />
-    <script is:inline src="/scripts/site.js"></script>
+    <script is:inline src={`/scripts/site.js?v=${siteJsVersion}`}></script>
   </body>
 </html>
