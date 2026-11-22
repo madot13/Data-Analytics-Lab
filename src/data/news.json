@@ -55,10 +55,31 @@
     }
   },
   {
+    "id": "poster-day-2026-best-research",
+    "date": "2026-11-13",
+    "title": "Best research at SDU Research Poster Day 2026",
+    "text": "Aisulu Igimbayeva, Abilmansur Alibekov and Aknur Mansurkhan won best research among SITAM faculty projects at Research Poster Day, organised by the SDU Researchers Club. They presented \"Explainable Machine Learning Framework for Multi-Stage Arterial Hypertension Prediction\".",
+    "category": "lab"
+  },
+  {
     "id": "digital-bridge-2026-govtech",
     "date": "2026-10-03",
     "title": "Lab team advances at AI & Digital Bridge 2026",
     "text": "Aisulu Igimbayeva, Aknur Mansurkhan and Abilmansur Alibekov defended their team's project in Astana and moved on to the second qualification stage of the GovTech programme.",
+    "category": "lab"
+  },
+  {
+    "id": "aict-2026-paper-accepted",
+    "date": "2026-09-25",
+    "title": "Hypertension prediction paper accepted at IEEE AICT 2026 in Baku",
+    "text": "\"Explainable Machine Learning Framework for Multi-Stage Arterial Hypertension Prediction\" (Paper ID 2026008759) was accepted for oral presentation at the 20th IEEE International Conference on Application of Information and Communication Technologies, held 14–16 October 2026 at ADA University in Baku, Azerbaijan. It is a joint work of SDU University and Almaty Management University.",
+    "category": "lab"
+  },
+  {
+    "id": "side-2026-paper-accepted",
+    "date": "2026-09-25",
+    "title": "Clinical ML leakage paper accepted at SIDe'26",
+    "text": "\"The Illusion of Performance in Clinical ML: Feature Leakage and Validation Pitfalls in Administrative Records\" (Paper ID 99) by Abilmansur Alibekov, Aisulu Igimbayeva and Bakhtiyor Meraliyev was accepted on the IEEE publication route at the International Conference on Secure and Intelligent Digital Ecosystems, 22–23 October 2026, Astana.",
     "category": "lab"
   },
   {

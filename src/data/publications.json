@@ -1,5 +1,25 @@
 [
   {
+    "id": "aict-2026-hypertension-xai",
+    "year": 2026,
+    "title": "Explainable Machine Learning Framework for Multi-Stage Arterial Hypertension Prediction",
+    "authors": "Aisulu Igimbayeva, Adel Kunuspekova, Abilmansur Alibekov, Aknur Mansurkhan, Gaukhar Igimbayeva, Bakhtiyor Meraliyev",
+    "venue": "2026 20th IEEE International Conference on Application of Information and Communication Technologies (AICT), Baku, Azerbaijan",
+    "paper": null,
+    "code": null,
+    "topics": ["clinical-prediction"]
+  },
+  {
+    "id": "side-2026-clinical-ml-leakage",
+    "year": 2026,
+    "title": "The Illusion of Performance in Clinical ML: Feature Leakage and Validation Pitfalls in Administrative Records",
+    "authors": "Abilmansur Alibekov, Aisulu Igimbayeva, Bakhtiyor Meraliyev",
+    "venue": "2026 International Conference on Secure and Intelligent Digital Ecosystems (SIDe), Astana, Kazakhstan",
+    "paper": null,
+    "code": null,
+    "topics": ["clinical-prediction"]
+  },
+  {
     "id": "hypertension-clinical-dataset-2026",
     "year": 2026,
     "title": "Using Machine Learning to Predict Arterial Hypertension From a Clinical Dataset",

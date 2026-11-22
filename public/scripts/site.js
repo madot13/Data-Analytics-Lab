@@ -150,8 +150,7 @@
   window.addEventListener("hashchange", requestUpdate);
   requestUpdate();
 
-  const gallery = document.querySelector("[data-hero-gallery]");
-  if (gallery) {
+  document.querySelectorAll("[data-hero-gallery], [data-gallery]").forEach((gallery) => {
     const slides = [...gallery.querySelectorAll(".hero-slide")];
     const dots = [...gallery.querySelectorAll(".hero-dots button")];
     const caption = gallery.querySelector("[data-hero-caption]");
@@ -194,7 +193,7 @@
     });
 
     gallery.querySelectorAll("[hidden]").forEach((element) => element.removeAttribute("hidden"));
-  }
+  });
 
   document.querySelectorAll(".avatar img").forEach((image) => {
     image.addEventListener("error", () => {

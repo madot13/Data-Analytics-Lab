@@ -54,5 +54,21 @@
     "tags": ["23 categories", "Sentiment trends", "Monthly reviews", "AI insights"],
     "repo": "https://github.com/akbooo/sdu_review_analytics",
     "order": 7
+  },
+  {
+    "id": "auto-recommendation-letter",
+    "title": "AI Recommendation Letter Generator",
+    "summary": "A web app that drafts formal recommendation letters for students. A teacher enters the course, grade and TA/RA role, uploads the student's CV and transcript, and Gemini writes a letter grounded in those documents.",
+    "tags": ["LLM generation", "CV & transcript parsing", "FastAPI", "React"],
+    "team": ["Aknur Mansurkhan"],
+    "repo": "https://github.com/whiteraay/auto-rec-letter",
+    "order": 8
+  },
+  {
+    "id": "student-dropout-prediction",
+    "title": "Student Dropout Risk Prediction",
+    "summary": "A machine learning model that flags SITAM students at risk of dropping out so advisors can step in early. Each student gets a risk score and an action plan, and last semester's predictions are checked against real outcomes.",
+    "tags": ["CatBoost", "SHAP explanations", "Risk scoring", "Early intervention"],
+    "order": 9
   }
 ]
